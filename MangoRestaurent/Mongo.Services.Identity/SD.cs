@@ -37,10 +37,10 @@ namespace Mongo.Services.Identity
                 new Client
                 {
                     ClientId="mango",
-                    ClientSecrets= { new Secret("secret".Sha256())},
+                    ClientSecrets= { new Secret("secret")},
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris={"https://localhost:7068/signin-oidc"},
-                    PostLogoutRedirectUris={"https://localhost:7068/signout-callback-oidc"},
+                    RedirectUris={"https://localhost:7234/signin-oidc"},
+                    PostLogoutRedirectUris={"https://localhost:7234/signout-callback-oidc"},
                     AllowedScopes=new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
