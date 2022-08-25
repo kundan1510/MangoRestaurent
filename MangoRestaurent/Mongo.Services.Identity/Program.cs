@@ -15,6 +15,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Reflection;
 using Mongo.Services.Identity.Initializer;
+using Duende.IdentityServer.Services;
+using Duende.IdentityServer.AspNetIdentity;
+using Mongo.Services.Identity.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +26,7 @@ var migrationsAssembly = typeof(Program).GetTypeInfo().Assembly.GetName().Name;
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext");
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
                options.UseSqlServer(connectionString));
 
