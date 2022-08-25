@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Reflection;
+using Mongo.Services.Identity.Initializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +65,7 @@ builder.Services
                 //});
 
 builder.Services.AddAuthentication();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 //builder.Services.AddAuthorization(options =>
 //    options.AddPolicy("admin",
@@ -120,9 +122,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseIdentityServer();
-
+var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
+// use dbInitializer
+dbInitializer.Initialize();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}").RequireAuthorization();
