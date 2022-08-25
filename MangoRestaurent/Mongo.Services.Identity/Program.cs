@@ -122,9 +122,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseIdentityServer();
-var dbInitializer = app.Services.GetRequiredService<IDbInitializer>();
-// use dbInitializer
-dbInitializer.Initialize();
+using (var scope = app.Services.CreateScope())
+{
+    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+    // use dbInitializer
+    dbInitializer.Initialize();
+}
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
