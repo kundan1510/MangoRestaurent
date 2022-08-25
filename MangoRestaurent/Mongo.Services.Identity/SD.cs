@@ -18,7 +18,7 @@ namespace Mongo.Services.Identity
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope> {
-                new ApiScope("Mango", "Mango Server"),
+                new ApiScope("mango", "Mango Server"),
                 new ApiScope(name: "read",   displayName: "Read your data."),
                 new ApiScope(name: "write",  displayName: "Write your data."),
                 new ApiScope(name: "delete", displayName: "Delete your data.")
