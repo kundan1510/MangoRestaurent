@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Mongo.Services.CouponAPI.Models;
 
 namespace Mango.Services.CouponAPI.DbContexts
 {
@@ -10,6 +11,6 @@ namespace Mango.Services.CouponAPI.DbContexts
 
         }
 
-        
+        public DbSet<Coupon> Coupons { get; set; }
     }
 }
