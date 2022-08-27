@@ -28,6 +28,8 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "mango";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
+        options.ClaimActions.MapJsonKey("role", "role", "role");
+        options.ClaimActions.MapJsonKey("sub", "sub", "sub");
 
         options.TokenValidationParameters.NameClaimType = "name";
         options.TokenValidationParameters.RoleClaimType = "role";
