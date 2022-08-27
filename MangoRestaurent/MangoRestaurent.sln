@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mongo.Services.Identity", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Services.ShoppingCartAPI", "Services\Mango.Services.ShoppingCartAPI\Mango.Services.ShoppingCartAPI.csproj", "{5B0EDE62-B508-424A-9EAB-26FB59E0546F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo.Services.Coupon", "Services\Mongo.Services.Coupon\Mongo.Services.Coupon.csproj", "{42F16259-35AE-4BBE-8E9B-795E2BFB0A0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo.Services.CouponAPI", "Services\Mongo.Services.Coupon\Mongo.Services.CouponAPI.csproj", "{42F16259-35AE-4BBE-8E9B-795E2BFB0A0D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
