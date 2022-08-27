@@ -1,7 +1,11 @@
-﻿namespace Mango.Services.ShoppingCartAPI.Models.Dtos
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Mango.Services.ShoppingCartAPI.Models.Dtos
 {
     public class ProductDto
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
