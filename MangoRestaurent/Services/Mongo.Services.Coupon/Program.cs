@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Mongo.Services.CouponAPI;
+using Mongo.Services.CouponAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
 // Add services to the container.
 
