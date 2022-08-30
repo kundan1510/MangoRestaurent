@@ -11,9 +11,10 @@ namespace Mongo.Services.OrderAPI.Messaging
     {
         private readonly OrderRepository _orderRepository;
         private readonly string serviceBusConnectionString;
-        private readonly string subscriptionName;
+        private readonly string subscriptionCheckOut;
         private readonly string checkoutMessageTopic;
         private readonly IConfiguration _configuration;
+        private ServiceBusProcessor checkOutProcessor;
 
         public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration)
         {
@@ -21,9 +22,30 @@ namespace Mongo.Services.OrderAPI.Messaging
             _configuration = configuration;
 
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
-            subscriptionName = _configuration.GetValue<string>("SubscriptionName");
+            subscriptionCheckOut = _configuration.GetValue<string>("subscriptionCheckOut");
             checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
+
+            var client = new ServiceBusClient(serviceBusConnectionString);
+            checkOutProcessor = client.CreateProcessor(checkoutMessageTopic, subscriptionCheckOut);
         }
+
+        public async Task Start()
+        {
+            checkOutProcessor.ProcessMessageAsync += OnCheckOutMessageReceived;
+            checkOutProcessor.ProcessErrorAsync += ErrorHandler;
+            await checkOutProcessor.StartProcessingAsync();
+        }
+        public async Task Stop()
+        {
+            await checkOutProcessor.StopProcessingAsync();
+            await checkOutProcessor.DisposeAsync();
+        }
+        Task ErrorHandler(ProcessErrorEventArgs args)
+        {
+            Console.WriteLine(args.Exception.ToString());
+            return Task.CompletedTask;
+        }
+
         private async Task OnCheckOutMessageReceived(ProcessMessageEventArgs args)
         {
             var message = args.Message;
@@ -65,5 +87,7 @@ namespace Mongo.Services.OrderAPI.Messaging
             await _orderRepository.AddOrder(orderHeader);
 
         }
+
+        
     }
 }
