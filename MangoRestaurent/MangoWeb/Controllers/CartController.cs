@@ -99,12 +99,12 @@ namespace MangoWeb.Controllers
             return View();
         }
 
-        [HttpGet]
+       
         public async Task<IActionResult> Checkout()
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
         }
-        [HttpPost("Checkout")]
+        [HttpPost]
         public async Task<IActionResult> Checkout(CartDto cartDto)
         {
             try
