@@ -13,7 +13,7 @@ namespace Mango.MessageBus
         public class AzureServiceBusMessageBus : IMessageBus
         {
             //can be improved
-            private string connectionString = "Endpoint=sb://mongorestaurent.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=UBtge7cfbJuZN9ebSbUkKuUFpFyHX7F6JlMFSHCKru4=;EntityPath=checkoutmessagetopic";
+            private string connectionString = "Endpoint=sb://mongorestaurent.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=UBtge7cfbJuZN9ebSbUkKuUFpFyHX7F6JlMFSHCKru4=";
 
             public async Task PublishMessage(BaseMessage message, string topicName)
             {
