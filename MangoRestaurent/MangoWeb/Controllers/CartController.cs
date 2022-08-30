@@ -104,7 +104,7 @@ namespace MangoWeb.Controllers
         {
             return View(await LoadCartDtoBasedOnLoggedInUser());
         }
-        [HttpPost]
+        
         public async Task<IActionResult> Checkout(CartDto cartDto)
         {
             try
@@ -118,7 +118,7 @@ namespace MangoWeb.Controllers
                 return View(cartDto);
             }
         }
-        [HttpGet]
+        
         public async Task<IActionResult> Confirmation()
         {
             return View();
