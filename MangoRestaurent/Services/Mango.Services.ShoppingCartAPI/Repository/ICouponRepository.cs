@@ -1,4 +1,6 @@
-﻿namespace Mango.Services.ShoppingCartAPI.Repository
+﻿using Mango.Services.ShoppingCartAPI.Models.Dtos;
+
+namespace Mango.Services.ShoppingCartAPI.Repository
 {
     public interface ICouponRepository
     {
