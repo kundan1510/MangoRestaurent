@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Mongo.Services.OrderAPI.DbContexts;
+using Mongo.Services.OrderAPI.Messaging;
 using Mongo.Services.OrderAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddSingleton<IAzureServiceBusConsumer, AzureServiceBusConsumer>();
+
 
 var optionBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
 optionBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
