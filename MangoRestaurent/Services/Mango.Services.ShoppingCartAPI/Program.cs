@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddSingleton<IMessageBus, AzureServiceBusMessageBus>();
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
 // Add services to the container.
 
@@ -19,7 +20,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
-
+builder.Services.AddHttpClient<ICouponRepository, CouponRepository>(u => u.BaseAddress =
+              new Uri(builder.Configuration["ServiceUrls:CouponAPI"]));
 builder.Services.AddControllers();
 builder.Services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
