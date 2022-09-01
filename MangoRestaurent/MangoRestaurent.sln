@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payments", "Payments", "{63
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaymentProcessor", "PaymentProcessor\PaymentProcessor.csproj", "{675783DF-63C6-41C4-88EF-42245CCD1B0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mongo.Services.PaymentAPI", "Services\Mongo.Services.PaymentAPI\Mongo.Services.PaymentAPI.csproj", "{9B5ECCEA-8713-477B-8DBF-886D05661F85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{675783DF-63C6-41C4-88EF-42245CCD1B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{675783DF-63C6-41C4-88EF-42245CCD1B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{675783DF-63C6-41C4-88EF-42245CCD1B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5ECCEA-8713-477B-8DBF-886D05661F85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5ECCEA-8713-477B-8DBF-886D05661F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5ECCEA-8713-477B-8DBF-886D05661F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5ECCEA-8713-477B-8DBF-886D05661F85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +81,7 @@ Global
 		{E26DC425-06C1-44DD-8137-B285BB90872A} = {5CF540EF-23D2-4817-9CA2-F669B4AFBB5F}
 		{A5210DE2-F4F2-4EBD-8FFE-831B3CF36DC7} = {A919F738-BD94-4C64-87B8-83C6FFF2F043}
 		{675783DF-63C6-41C4-88EF-42245CCD1B0A} = {63F1FFA5-0E1F-4E27-84B0-E039F914B9F4}
+		{9B5ECCEA-8713-477B-8DBF-886D05661F85} = {A919F738-BD94-4C64-87B8-83C6FFF2F043}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {51BE4C7E-570D-4AC3-AFDE-E8286738C731}
