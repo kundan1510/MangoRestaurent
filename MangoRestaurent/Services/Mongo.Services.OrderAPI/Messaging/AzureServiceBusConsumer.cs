@@ -1,4 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
+using Mango.MessageBus;
 using Mongo.Services.OrderAPI.Messages;
 using Mongo.Services.OrderAPI.Models;
 using Mongo.Services.OrderAPI.Repository;
@@ -15,12 +16,13 @@ namespace Mongo.Services.OrderAPI.Messaging
         private readonly string checkoutMessageTopic;
         private readonly IConfiguration _configuration;
         private ServiceBusProcessor checkOutProcessor;
+        private readonly IMessageBus _messageBus;
 
-        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration)
+        public AzureServiceBusConsumer(OrderRepository orderRepository, IConfiguration configuration, IMessageBus messageBus)
         {
             _orderRepository = orderRepository;
             _configuration = configuration;
-
+            _messageBus = messageBus;
             serviceBusConnectionString = _configuration.GetValue<string>("ServiceBusConnectionString");
             subscriptionCheckOut = _configuration.GetValue<string>("subscriptionCheckOut");
             checkoutMessageTopic = _configuration.GetValue<string>("CheckoutMessageTopic");
@@ -85,6 +87,20 @@ namespace Mongo.Services.OrderAPI.Messaging
             }
 
             await _orderRepository.AddOrder(orderHeader);
+            PaymentRequestMessage paymentRequestMessage = new()
+            {
+                Name = orderHeader.FirstName + " " + orderHeader.LastName,
+                CardNumber = orderHeader.CardNumber,
+                CVV = orderHeader.CVV,
+                ExpiryMonthYear = orderHeader.ExpiryMonthYear,
+                OrderId = orderHeader.OrderHeaderId,
+                OrderTotal = orderHeader.OrderTotal
+            };
+
+            try
+            {
+                await _messageBus.PublishMessage(paymentRequestMessage,)
+            }
 
         }
 
